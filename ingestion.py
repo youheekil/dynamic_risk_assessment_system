@@ -1,10 +1,17 @@
-import pandas as pd
-import numpy as np
+"""
+Ingesting Data from multiple folders
+
+Author: Youhee
+Date: Feb 2022
+"""
+
+
 import os
 import json
-from datetime import datetime
-
 import logging
+import pandas as pd
+# from datetime import datetime
+
 FORMAT = "%(asctime)s | %(name)s - %(levelname)s - %(message)s"
 LOG_FILEPATH = "logs/testing.log/"
 logging.basicConfig(
@@ -34,13 +41,12 @@ def merge_multiple_dataframe():
     for each_filename in filenames:
         try:
             df1 = pd.read_csv(os.path.join(os.getcwd(), input_folder_path, each_filename))
-            df_list = df_list.append(df1)
         except:
-            logging.error("%s file : No columns to parse from file", each_filename)
-            pass
-        # TODO: WRITING `ingestedfiles`
-        # with open('ingestedfiles.txt', 'a') as f:
-        #    f.write(f"{each_filename} \n")
+            logging.error("No columns to parse from file | %s", each_filename)
+        else:
+            df_list = df_list.append(df1)
+            with open('ingestedfiles.txt', 'a') as f:
+               f.write(f"{each_filename} \n")
 
     result = df_list.drop_duplicates()
     output_pth = os.path.join(output_folder_path, "finaldata.csv")
