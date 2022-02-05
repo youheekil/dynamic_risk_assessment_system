@@ -17,3 +17,7 @@ and to call all other Python scripts when needed
 ```bash
 pip install -r requirements.txt
 ```
+|1. Data Ingestion|
+```bash
+python ingestion.py
+```

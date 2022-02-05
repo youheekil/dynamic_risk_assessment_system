@@ -25,6 +25,7 @@ def merge_multiple_dataframe():
     Function for data ingestion, merging multiple dataframe
     Check for datasets, compile them together, and write to an output file
     :return:
+    data: data frame of the ingested data
     """
     filenames = os.listdir(os.getcwd() + "/" + input_folder_path)
     df_list = pd.DataFrame(columns=['corporation', 'lastmonth_activity', 'lastyear_activity',
@@ -43,7 +44,7 @@ def merge_multiple_dataframe():
     result = df_list.drop_duplicates()
     output_pth = os.path.join(output_folder_path, "finaldata.csv")
     result.to_csv(output_pth, index=False)
-    return print(result.head(10))
+    return result
 
 if __name__ == '__main__':
     merge_multiple_dataframe()
