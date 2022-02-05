@@ -20,6 +20,7 @@ with open('config.json','r') as f:
 input_folder_path = config['input_folder_path']
 output_folder_path = config['output_folder_path']
 
+
 def merge_multiple_dataframe():
     """
     Function for data ingestion, merging multiple dataframe
@@ -45,6 +46,7 @@ def merge_multiple_dataframe():
     output_pth = os.path.join(output_folder_path, "finaldata.csv")
     result.to_csv(output_pth, index=False)
     return result
+
 
 if __name__ == '__main__':
     merge_multiple_dataframe()
