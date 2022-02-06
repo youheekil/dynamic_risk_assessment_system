@@ -33,7 +33,6 @@ def test_merge_multiple_dataframe():
 
     try:
         merge_multiple_dataframe()
-        # TODO: load the file under ingesteddata folder
         data = pd.read_csv(os.path.join(output_folder_path, "finaldata.csv"))
 
         assert data.shape[0] > 0

@@ -14,17 +14,23 @@
 and to call all other Python scripts when needed
 
 ## Code
-```bash
+```shell
 pip install -r requirements.txt
 ```
 
 |1. Data Ingestion|
-```bash
+```shell
 python ingestion.py
 ```
 
 |2. Training|
-```bash
+```shell
 python training.py
+```
+
+|3. Scoring, deployment|
+```shell
+python scoring.py
+python deployment.py
 ```
 

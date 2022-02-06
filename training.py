@@ -4,7 +4,6 @@ import numpy as np
 import pickle
 import os
 from sklearn import metrics
-# from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 import json
 
@@ -26,18 +25,31 @@ dataset_csv_path = os.path.join(config['output_folder_path'])
 model_path = os.path.join(config['output_model_path']) 
 
 
-# Function for training the model
+def trim_data(data_path):
+    """
+    This function is to trim the data.
+    Read data and set 'exited' column as a target colum.
+    Also 'corporation' column is not used for the predction
+    :param
+        data_path: String - path for the data
+    :return:
+        X : Array without corporation and exited columns
+        y : Array of a target (exited)
+    """
+    data = pd.read_csv(data_path)
+    X = data.drop(columns=['corporation', 'exited']).values
+    y = data['exited'].values
+    return X, y
+
+
 def train_model():
     """
     This function is for training the logistic regression.
     :return:
-    None
+        None
     """
     # read data
-    data = pd.read_csv(os.path.join(dataset_csv_path, "finaldata.csv"))
-    X_train = data.drop(columns = ['corporation', 'exited']).values
-    y_train = data['exited'].values
-    # X_train, X_test, y_train, y_test = train_test_split(X, y, 0.2, random_state=42)
+    X_train, y_train = trim_data(os.path.join(dataset_csv_path, "finaldata.csv"))
 
     # the logistic regression for training
     logit = LogisticRegression(C=1.0, class_weight=None, dual=False, fit_intercept=True,
@@ -51,7 +63,7 @@ def train_model():
     logging.info("Training and fitting the logistic model to your data is successfully completed")
 
     # write the trained model to your workspace in a file called trainedmodel.pkl
-    filehandler = open( os.path.join(model_path, "trainedmodel.pkl"), 'wb')
+    filehandler = open(os.path.join(model_path, "trainedmodel.pkl"), 'wb')
     pickle.dump(model, filehandler)
 
 
