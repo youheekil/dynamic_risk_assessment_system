@@ -38,7 +38,6 @@ def model_predictions():
 
     # Calculate predictions
     pred = model.predict(X_test)
-
     return pred
 
 
@@ -46,18 +45,21 @@ def dataframe_summary():
     """
     This function is to get summary statistics (mean, median, sd).
     :return:
-    summary_statistics : a list containing all summary statistics
+    summary_df : A dataframe containing all summary statistics
     """
     data = pd.read_csv(os.path.join(dataset_csv_path, "finaldata.csv"))
     numerical_col = data.select_dtypes(include=np.number).columns.tolist()
-    X_numeric = data[numerical_col]
+    X_numeric = data[numerical_col].drop(columns = "exited")
 
-    # calculate summary statistics here
-    for col in X_numeric.columns:
-        mean = np.mean(col)
-        median = np.median(col)
-        std = np.std(col)
-    # TODO: I don't know how to store list for the summary statistics
+    mean = list(X_numeric.mean(axis=0).values)
+    median = list(X_numeric.median(axis=0).values)
+    std = list(X_numeric.std(axis=0).values)
+
+    summary_df = pd.DataFrame(list(zip(X_numeric.columns, mean, median, std)),
+                              columns=['column', 'mean', 'median', 'std'])
+
+    summary_df.to_csv(os.path.join(dataset_csv_path, "summary_df.csv"))
+    return summary_df
 
 
 def missing_data():
@@ -74,8 +76,7 @@ def missing_data():
     nas = list(data.isna().sum())
     # calculate what percent of each column consists of NA values.
     na_percentage = [nas[i] / len(data.index) for i in range(len(nas))]
-
-    return print(na_percentage)
+    return na_percentage
 
 def ingestion_timing():
     starttime = timeit.default_timer()
@@ -102,7 +103,7 @@ def execution_time():
     timing = []
     timing.append(ingestion_timing())
     timing.append(training_timing())
-    return print(timing)
+    return timing
 
 
 def outdated_packages_list():
@@ -134,7 +135,7 @@ def outdated_packages_list():
     dependencies_table = pd.DataFrame(list(zip(package, installed_version, available_version)),
                                       columns=['package', 'installed_version', 'available_version'])
     dependencies_table.to_csv("dependencies.csv", columns=['package', 'installed_version', 'available_version'])
-    return print(dependencies_table.head(10))
+    return dependencies_table
 
 if __name__ == '__main__':
     model_predictions()
