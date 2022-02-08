@@ -12,36 +12,43 @@ import json
 with open('config.json','r') as f:
     config = json.load(f)
 
-trained_model_path = os.path.join(config['output_model_path'])
+model_path = os.path.join(config['output_model_path'])
 dataset_csv_path = os.path.join(config['output_folder_path']) 
 test_data_path = os.path.join(config['test_data_path']) 
-
+prod_deployment_path = os.path.join(config['prod_deployment_path'])
 
 # Function for model scoring
-def score_model():
+def score_model(prod):
     """
     This function takes a trained model, load test data, and calculate on F1 score for the model
     relative to the test data
+    :param prod:
+    prod = True means we are getting finaldata
+    prod = False means we are getting test data
     :return:
     f1 score value
     """
     # loading the trained model
-    with open(os.path.join(trained_model_path, 'trainedmodel.pkl'), 'rb') as file:
+    with open(os.path.join(prod_deployment_path, 'trainedmodel.pkl'), 'rb') as file:
         model = pickle.load(file)
 
-    # importing test data
-    test_data = pd.read_csv(os.path.join(test_data_path, "testdata.csv"))
-    X_test = test_data.drop(columns = ['corporation', 'exited']).values
-    y_test = test_data['exited'].values
+    if prod == True:
+        # importing finaldata.csv
+        df = pd.read_csv(os.path.join(dataset_csv_path, "finaldata.csv"))
+    else:
+        # importing test data
+        df = pd.read_csv(os.path.join(test_data_path, "testdata.csv"))
+    X_test = df.drop(columns = ['corporation', 'exited']).values
+    y_test = df['exited'].values
 
     pred = model.predict(X_test)
     f1 = f1_score(pred, y_test)
 
     # record the result of the f1_score to the latestscore.txt file
-    with open('latestscore.txt', 'a') as file:
+    with open(os.path.join(model_path, 'latestscore.txt'), 'w') as file:
         file.write(f"{f1}\n")
     return print(f1)
 
 
 if __name__ == "__main__":
-    score_model()
+    score_model(prod=True)

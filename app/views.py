@@ -42,7 +42,5 @@ def summary_stats():
 def model_diag():
 	timing = diagnostics.execution_time()
 	na_percent = diagnostics.missing_data()
-	return render_template("timing.html",
-						   ingestion_time = timing[0],
-						   training_time = timing[1])
-
+	dependencies_check = diagnostics.outdated_packages_list()
+	return timing + "\n" + na_percent + "\n" + dependencies_check

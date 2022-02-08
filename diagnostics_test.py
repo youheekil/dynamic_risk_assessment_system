@@ -69,5 +69,4 @@ def test_dataframe_summary():
                 "The file failed to save a dataframe of the statistics summary"
         )
 
-# TODO: WRITE test_outdated_packages_list
 

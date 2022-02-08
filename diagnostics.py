@@ -11,6 +11,7 @@ import os
 import json
 import pickle
 import subprocess
+import sys
 
 from training import trim_data
 
@@ -81,7 +82,10 @@ def missing_data():
     nas = list(data.isna().sum())
     # calculate what percent of each column consists of NA values.
     na_percentage = [nas[i] / len(data.index) for i in range(len(nas))]
-    return na_percentage
+    na_result = []
+    for idx in range(len(data.columns)):
+        na_result.append([data.columns[idx], str(na_percentage[idx])+"%"])
+    return str(na_result)
 
 def ingestion_timing():
     starttime = timeit.default_timer()
@@ -106,9 +110,9 @@ def execution_time():
     """
     # calculate timing of training.py and ingestion.py
     timing = []
-    timing.append(ingestion_timing())
-    timing.append(training_timing())
-    return timing
+    timing.append(["ingestion timing", ingestion_timing()])
+    timing.append(["training timing", training_timing()])
+    return str(timing)
 
 
 def outdated_packages_list():
@@ -121,7 +125,7 @@ def outdated_packages_list():
     :return:
         dependencies_list : A table containing list of python modules
     """
-
+    outdated_packages = subprocess.check_output(['pip', 'list', '--outdated']).decode(sys.stdout.encoding)
     dependencies = subprocess.check_output(['pip', 'list', '--outdated'], text = True)
     with open('installed.csv', 'w') as file:
         file.write(dependencies)
@@ -140,15 +144,15 @@ def outdated_packages_list():
     dependencies_table = pd.DataFrame(list(zip(package, installed_version, available_version)),
                                       columns=['package', 'installed_version', 'available_version'])
     dependencies_table.to_csv("dependencies.csv", columns=['package', 'installed_version', 'available_version'])
-    return dependencies_table
+    return str(outdated_packages)
 
 
 if __name__ == '__main__':
-    #model_predictions()
+    model_predictions()
     dataframe_summary()
-    #execution_time()
-    #missing_data()
-    #outdated_packages_list()
+    execution_time()
+    missing_data()
+    outdated_packages_list()
 
 
 
