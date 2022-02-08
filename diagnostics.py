@@ -59,6 +59,11 @@ def dataframe_summary():
                               columns=['column', 'mean', 'median', 'std'])
 
     summary_df.to_csv(os.path.join(dataset_csv_path, "summary_df.csv"))
+    html = summary_df.to_html()
+    # write html to file
+    text_file = open("app/templates/summarystats_file.html", "w")
+    text_file.write(html)
+    text_file.close()
     return summary_df
 
 
@@ -137,12 +142,13 @@ def outdated_packages_list():
     dependencies_table.to_csv("dependencies.csv", columns=['package', 'installed_version', 'available_version'])
     return dependencies_table
 
+
 if __name__ == '__main__':
-    model_predictions()
-    # dataframe_summary()
-    execution_time()
-    missing_data()
-    outdated_packages_list()
+    #model_predictions()
+    dataframe_summary()
+    #execution_time()
+    #missing_data()
+    #outdated_packages_list()
 
 
 
