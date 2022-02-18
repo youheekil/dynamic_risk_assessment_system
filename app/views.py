@@ -4,6 +4,7 @@ from flask import request, render_template, jsonify
 import json
 import os
 import diagnostics
+import scoring as _scoring
 from IPython.display import HTML
 
 with open('config.json','r') as f:
@@ -25,10 +26,9 @@ def predict():
 
 
 # Scoring Endpoint
-@app.route("/scoring", methods=['GET','OPTIONS'])
-def scoring():
-    with open(os.path.join(production_deployment_path, "latestscore.txt"), 'r') as file:
-        f1 = file.readline().strip()
+@app.route("/score", methods=['GET','OPTIONS'])
+def score():
+    f1 = _scoring.score_model(prod=False)
     return str(f1)
 
 

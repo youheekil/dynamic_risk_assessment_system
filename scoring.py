@@ -47,7 +47,7 @@ def score_model(prod):
     # record the result of the f1_score to the latestscore.txt file
     with open(os.path.join(model_path, 'latestscore.txt'), 'w') as file:
         file.write(f"{f1}\n")
-    return print(f1)
+    return f1
 
 
 if __name__ == "__main__":

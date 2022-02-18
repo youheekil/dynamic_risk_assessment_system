@@ -3,7 +3,7 @@ Hello, youhee!
 0.5714285714285715
 [{"column":"lastmonth_activity","mean":5625.923076923077,"median":425.0,"std":19444.774621317832},{"column":"lastyear_activity","mean":763.5384615384615,"median":97.5,"std":2016.6093569309696},{"column":"number_of_employees","mean":457.46153846153845,"median":99.0,"std":800.6048328991891}]
 
-[['ingestion timing', 1.3950093689999221], ['training timing', 2.247103430999914]]
+[['ingestion timing', 1.1814714040000354], ['training timing', 1.9881619540000202]]
 [['corporation', '0.0%'], ['lastmonth_activity', '0.0%'], ['lastyear_activity', '0.0%'], ['number_of_employees', '0.0%'], ['exited', '0.0%']]
 Package            Version  Latest  Type
 ------------------ -------- ------- -----

@@ -25,7 +25,7 @@ def store_model_into_pickle():
     #    pickle.dump(model, os.path.join(output_model_path, "trainedmodel.pkl"))
 
     model = os.path.join(output_model_path, "trainedmodel.pkl")
-    score = os.path.join("latestscore.txt")
+    score = os.path.join(output_model_path, "latestscore.txt")
     file_list = os.path.join("ingestedfiles.txt")
 
     source = [model, score, file_list]

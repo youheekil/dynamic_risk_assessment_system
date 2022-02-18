@@ -1,0 +1,68 @@
+Hello, youhee!
+[0 1 1 1 1]
+0.4210526315789474
+[{"column":"lastmonth_activity","mean":165.65384615384616,"median":73.0,"std":284.0332293669447},{"column":"lastyear_activity","mean":1502.923076923077,"median":955.0,"std":2192.6449584568304},{"column":"number_of_employees","mean":26.884615384615383,"median":14.0,"std":31.353885785435814}]
+
+[['ingestion timing', 1.1818299660000022], ['training timing', 2.0802021559999986]]
+[['corporation', '0.0%'], ['lastmonth_activity', '0.0%'], ['lastyear_activity', '0.0%'], ['number_of_employees', '0.0%'], ['exited', '0.0%']]
+Package            Version  Latest  Type
+------------------ -------- ------- -----
+asyncssh           2.8.1    2.9.0   wheel
+charset-normalizer 2.0.11   2.0.12  wheel
+click              7.1.2    8.0.3   wheel
+configparser       5.0.2    5.2.0   wheel
+cryptography       3.4.8    36.0.1  wheel
+cycler             0.10.0   0.11.0  wheel
+Cython             0.29.26  0.29.28 wheel
+distro             1.6.0    1.7.0   wheel
+docutils           0.16     0.18.1  wheel
+dvc                2.9.3    2.9.4   wheel
+fastapi            0.73.0   0.74.0  wheel
+Flask              2.0.2    2.0.3   wheel
+ftfy               6.0.3    6.1.1   wheel
+grandalf           0.6      0.7     wheel
+gunicorn           20.0.4   20.1.0  wheel
+importlib-metadata 4.8.1    4.11.1  wheel
+ipykernel          6.8.0    6.9.1   wheel
+itsdangerous       2.0.1    2.1.0   wheel
+jupyter-core       4.9.1    4.9.2   wheel
+kiwisolver         1.3.1    1.3.2   wheel
+lxml               4.5.1    4.8.0   wheel
+mailchecker        4.1.11   4.1.12  sdist
+MarkupSafe         2.0.1    2.1.0   wheel
+matplotlib         3.3.4    3.5.1   wheel
+mccabe             0.6.1    0.7.0   wheel
+mistune            0.8.4    2.0.2   wheel
+nbclient           0.5.10   0.5.11  wheel
+nbconvert          6.4.1    6.4.2   wheel
+numpy              1.19.4   1.21.5  wheel
+phonenumbers       8.12.42  8.12.43 wheel
+Pillow             8.1.0    9.0.1   wheel
+platformdirs       2.4.1    2.5.0   wheel
+prompt-toolkit     3.0.26   3.0.28  wheel
+protobuf           3.19.3   3.19.4  wheel
+pyOpenSSL          21.0.0   22.0.0  wheel
+pyparsing          2.4.7    3.0.7   wheel
+pytest             7.0.0    7.0.1   wheel
+python-benedict    0.24.3   0.25.0  wheel
+python-dateutil    2.8.1    2.8.2   wheel
+python-slugify     5.0.2    6.0.1   wheel
+pytz               2021.1   2021.3  wheel
+rich               11.0.0   11.2.0  wheel
+ruamel.yaml        0.17.20  0.17.21 wheel
+scipy              1.6.1    1.7.3   wheel
+scmrepo            0.0.7    0.0.8   wheel
+seaborn            0.11.1   0.11.2  wheel
+setuptools         60.3.1   60.9.3  wheel
+simplejson         3.17.2   3.17.6  wheel
+six                1.15.0   1.16.0  wheel
+starlette          0.17.1   0.18.0  wheel
+streamlit          1.5.0    1.5.1   wheel
+threadpoolctl      2.1.0    3.1.0   wheel
+tomli              2.0.0    2.0.1   wheel
+tornado            5.1.1    6.1     wheel
+typing-extensions  3.10.0.2 4.1.1   wheel
+uvicorn            0.17.4   0.17.5  wheel
+Werkzeug           2.0.2    2.0.3   wheel
+zipp               3.6.0    3.7.0   wheel
+

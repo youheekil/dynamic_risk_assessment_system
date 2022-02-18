@@ -15,11 +15,11 @@ def apicalls():
     # Call each API endpoint and store the responses
     respond0 = requests.get('http://127.0.0.1:5000/youhee', headers=headers).text
     respond1 = requests.get('http://127.0.0.1:5000/prediction', headers=headers).text
-    respond2 = requests.get('http://127.0.0.1:5000/scoring', headers=headers).text
+    respond2 = requests.get('http://127.0.0.1:5000/score', headers=headers).text
     respond3 = requests.get('http://127.0.0.1:5000/summarystats', headers=headers).text
     respond4 = requests.get('http://127.0.0.1:5000/model_diagnostic', headers=headers).text
 
-    with open(os.path.join(model_path, 'output_model_path.txt'), 'a') as file:
+    with open(os.path.join(model_path, 'apireturns2.txt'), 'a') as file:
         file.write(str(respond0) + "\n")
         file.write(str(respond1) + "\n")
         file.write(str(respond2) + "\n")
